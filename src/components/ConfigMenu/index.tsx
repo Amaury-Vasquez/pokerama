@@ -12,7 +12,7 @@ import {
 
 export const ConfigMenu = (props: { callback: Function }) => {
   const [name, setName] = useState<String>("anonimo");
-  const [radioValue, setRadioValue] = useState<number>(1);
+  const [radioValue, setRadioValue] = useState<number>(12);
 
   const valueChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
     setRadioValue(parseInt(e.target.value));
