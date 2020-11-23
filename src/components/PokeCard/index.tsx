@@ -17,7 +17,9 @@ export const PokeCard = (props: {
 
   const ImageLoaded = () => {
     setLoading(false);
-    setActive(false);
+    setTimeout(() => {
+      setActive(false);
+    }, 300);
   };
   return (
     <Card
