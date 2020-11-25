@@ -1,16 +1,14 @@
-import React, { Fragment, useState } from "react";
-import { Spin } from "antd";
-import { LoadingOutlined } from "@ant-design/icons";
+import React, { useState } from "react";
 
 import { Card, Image } from "./styles";
 import { Cover } from "../../svg/index";
-const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
 export const PokeCard = (props: {
   url: string;
   pokeId: number;
   cardId: number;
   callback: Function;
+  onLoad: Function;
 }) => {
   const [active, setActive] = useState(true);
   const [loading, setLoading] = useState(true);
@@ -28,15 +26,15 @@ export const PokeCard = (props: {
       }}
     >
       {active ? (
-        <Fragment>
-          <Image
-            active={!loading}
-            onLoad={loading ? ImageLoaded : null}
-            src={props.url}
-            alt={"Pokemon"}
-          />
-          {loading ? <Spin indicator={antIcon} /> : null}
-        </Fragment>
+        <Image
+          active={!loading}
+          onLoad={() => {
+            if (loading) ImageLoaded();
+            props.onLoad();
+          }}
+          src={props.url}
+          alt={"Pokemon"}
+        />
       ) : (
         <Cover size={"100%"} />
       )}
